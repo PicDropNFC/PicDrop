@@ -1,0 +1,65 @@
+/* Wedding Classic Elegant - fully implemented */
+:root {
+  --surface-page: #f4f1f8;
+  --surface-card: rgba(255, 255, 255, 0.9);
+  --surface-muted: rgba(250, 246, 255, 0.7);
+  --text-title: #30203f;
+  --text-primary: #33284a;
+  --text-secondary: #5f4f73;
+  --text-muted: #7e6d90;
+  --border-soft: rgba(95, 70, 120, 0.2);
+  --chip-bg: rgba(255, 255, 255, 0.72);
+  --chip-border: rgba(133, 101, 164, 0.28);
+  --btn-primary-bg: linear-gradient(120deg, #a872df, #7b56d6, #c280cc);
+  --btn-primary-text: #ffffff;
+  --btn-secondary-bg: #f6efff;
+  --btn-secondary-text: #4c2f6f;
+  --btn-secondary-border: #d9c4ef;
+}
+
+.page-shell {
+  background: linear-gradient(-45deg, #f7f1ff, #efe6ff, #f9f5fb, #f3ecff);
+  background-size: 250% 250%;
+  animation: gradShift 18s ease infinite;
+}
+
+@keyframes gradShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.theme-overlay::before,
+.theme-overlay::after {
+  content: "";
+  position: absolute;
+  width: clamp(220px, 34vw, 460px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197, 158, 229, 0.38), transparent 60%);
+  filter: blur(8px);
+  animation: floatOrb 11s ease-in-out infinite;
+}
+
+.theme-overlay::before { top: -6%; left: -8%; }
+.theme-overlay::after { right: -10%; bottom: -8%; animation-delay: 2.4s; }
+
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-16px) translateX(8px); }
+}
+
+.theme-particles {
+  background-image:
+    radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.62) 0 2px, transparent 3px),
+    radial-gradient(circle at 74% 28%, rgba(208, 169, 235, 0.5) 0 2px, transparent 3px),
+    radial-gradient(circle at 42% 72%, rgba(255, 255, 255, 0.55) 0 2px, transparent 3px),
+    radial-gradient(circle at 82% 88%, rgba(202, 162, 232, 0.55) 0 2px, transparent 3px);
+  animation: drift 22s linear infinite;
+  opacity: 0.85;
+}
+
+@keyframes drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-30px); }
+}

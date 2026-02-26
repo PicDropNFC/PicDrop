@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PicDropNFC | Product Page</title>
+    <meta name="description" content="Scan and share moments with PicDropNFC." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/shared/reset.css" />
+    <link rel="stylesheet" href="../assets/shared/components.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" id="pageShell" data-product-page>
+      <div class="theme-overlay" aria-hidden="true"></div>
+      <div class="theme-particles" aria-hidden="true"></div>
+
+      <section class="card" aria-labelledby="pageTitle">
+        <span class="tag" id="eventBadge">PicDropNFC</span>
+        <h1 class="title" id="pageTitle">Loading your album…</h1>
+        <p class="subtitle" id="subtitleText">One tap away from your photos.</p>
+
+        <div class="details-list" id="eventDetails"></div>
+
+        <div class="cta-stack">
+          <a id="viewBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer" data-analytics="view_album">View the album</a>
+          <a id="uploadBtn" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer" data-analytics="upload_photos">Upload your photos</a>
+        </div>
+
+        <div class="microcopy">
+          <span>✅ No account needed</span>
+          <span>📸 Photos only, please—no videos</span>
+          <span>⏱ Uploads may take a moment on slower connections</span>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>Help / FAQ</summary>
+            <p>
+              Tap <strong>View the album</strong> to browse shared photos, or <strong>Upload your photos</strong> to add yours.
+              Dropbox may not strictly block videos on every link type, so please upload photos only.
+            </p>
+          </details>
+          <details>
+            <summary>Why can’t videos be fully blocked here?</summary>
+            <p>
+              This page is static (GitHub Pages), so it can guide behavior but cannot inspect files before Dropbox receives them.
+              For stricter control, use Dropbox File Request file-type limits (if available) or add a serverless upload validator.
+            </p>
+          </details>
+        </div>
+
+        <p class="footer-note">Public link notice: anyone with this page URL can access these buttons.</p>
+      </section>
+    </main>
+
+    <script src="../assets/shared/analytics-hooks.js"></script>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

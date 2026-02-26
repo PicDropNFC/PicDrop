@@ -1,0 +1,45 @@
+/* Theme 02 stub - variable-driven skin with subtle animated background */
+:root {
+  --surface-page: hsl(44 50% 96%);
+  --surface-card: rgba(255, 255, 255, 0.9);
+  --surface-muted: rgba(255, 255, 255, 0.65);
+  --text-title: hsl(40 30% 22%);
+  --text-primary: hsl(40 28% 20%);
+  --text-secondary: hsl(36 20% 35%);
+  --text-muted: hsl(36 15% 45%);
+  --border-soft: hsla(48 25% 30% / 0.18);
+  --chip-bg: rgba(255, 255, 255, 0.75);
+  --chip-border: hsla(48 25% 30% / 0.22);
+  --btn-primary-bg: linear-gradient(120deg, hsl(52 68% 52%), hsl(86 66% 48%));
+  --btn-primary-text: #fff;
+  --btn-secondary-bg: hsla(48 70% 96% / 0.9);
+  --btn-secondary-text: hsl(40 40% 28%);
+  --btn-secondary-border: hsla(48 40% 55% / 0.3);
+}
+
+.page-shell {
+  background: linear-gradient(130deg,
+    hsla(50 80% 93% / 1),
+    hsla(90 75% 94% / 1),
+    hsla(125 65% 93% / 1));
+  background-size: 200% 200%;
+  animation: themePulse 20s ease infinite;
+}
+
+.theme-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 15%, hsla(70 85% 80% / 0.28), transparent 35%);
+}
+
+.theme-particles {
+  background-image: radial-gradient(circle at 20% 30%, hsla(68 100% 98% / 0.9) 0 1.8px, transparent 2px);
+  background-size: 36px 36px;
+  opacity: 0.35;
+}
+
+@keyframes themePulse {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
