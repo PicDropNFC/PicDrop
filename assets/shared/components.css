@@ -217,3 +217,73 @@ a:focus-visible {
   .cta-stack { grid-template-columns: 1fr 1fr; }
   .story-band { grid-template-columns: 1fr 1fr 1fr; }
 }
+
+
+/* Centered layout refinement */
+.card {
+  text-align: center;
+}
+
+.hero-header {
+  justify-items: center;
+}
+
+.details-list {
+  justify-items: center;
+}
+
+.details-list div {
+  width: fit-content;
+}
+
+.subtitle {
+  margin-inline: auto;
+}
+
+.microcopy {
+  justify-items: center;
+}
+
+.story-band {
+  text-align: center;
+}
+
+.story-pill {
+  text-align: center;
+}
+
+/* 1-second CTA loading animation before redirect */
+.btn.is-loading {
+  animation: ctaLaunch 1s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes ctaLaunch {
+  0% {
+    transform: scale(1);
+    filter: saturate(1);
+  }
+  30% {
+    transform: scale(0.96);
+    filter: saturate(1.2);
+  }
+  65% {
+    transform: scale(1.06) translateY(-1px);
+    filter: saturate(1.35) brightness(1.08);
+  }
+  100% {
+    transform: scale(1);
+    filter: saturate(1.05) brightness(1.03);
+  }
+}
+
+.btn-primary.is-loading {
+  background: linear-gradient(120deg, #5f88ff, #8b6dff, #c57cff);
+  color: #fff;
+}
+
+.btn-secondary.is-loading {
+  background: linear-gradient(120deg, #fff7d9, #ffe6b1);
+  color: #5b430d;
+  border-color: #f0c980;
+}

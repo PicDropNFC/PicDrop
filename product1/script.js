@@ -25,7 +25,7 @@
   const uploadBtn = document.getElementById("uploadBtn");
 
   title.textContent = config.productDisplayName || "Product 1";
-  subtitle.textContent = "Tap. Share. View your moments together.";
+  subtitle.textContent = "View Event moments together.";
 
   const detailRows = [config.coupleName, config.eventName, config.date].filter(Boolean);
   details.innerHTML = detailRows.map((item) => `<div>• ${item}</div>`).join("");
@@ -38,12 +38,27 @@
   uploadBtn.href = config.dropboxUploadUrl || "#";
 
   [viewBtn, uploadBtn].forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      const href = button.href;
+      if (!href || href.endsWith("#")) {
+        return;
+      }
+
+      button.classList.remove("is-loading");
+      void button.offsetWidth;
+      button.classList.add("is-loading");
+
       const eventName = button.getAttribute("data-analytics");
       window.PicDropAnalytics?.emit(eventName, {
         productDisplayName: config.productDisplayName,
         themeId: activeTheme
       });
+
+      window.setTimeout(() => {
+        window.open(href, "_blank", "noopener,noreferrer");
+        button.classList.remove("is-loading");
+      }, 1000);
     });
   });
 
