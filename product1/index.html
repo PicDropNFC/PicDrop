@@ -7,25 +7,29 @@
     <meta name="description" content="Scan and share moments with PicDropNFC." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/shared/reset.css" />
     <link rel="stylesheet" href="../assets/shared/components.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="page-shell" id="pageShell" data-product-page>
+    <main class="page-shell" data-product-page>
       <div class="theme-overlay" aria-hidden="true"></div>
       <div class="theme-particles" aria-hidden="true"></div>
+      <div class="theme-sparkles" aria-hidden="true"></div>
 
       <section class="card" aria-labelledby="pageTitle">
-        <span class="tag" id="eventBadge">PicDropNFC</span>
-        <h1 class="title" id="pageTitle">Loading your album…</h1>
-        <p class="subtitle" id="subtitleText">One tap away from your photos.</p>
+        <header class="hero-header">
+          <span class="tag" id="eventBadge">PicDropNFC</span>
+          <p class="loading-quip" id="loadingQuip">Memories loading...</p>
+          <h1 class="title" id="pageTitle">Product 1</h1>
+          <p class="subtitle" id="subtitleText">Tap. Share. View your moments together.</p>
+        </header>
 
         <div class="details-list" id="eventDetails"></div>
 
         <div class="cta-stack">
-          <a id="viewBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer" data-analytics="view_album">View the album</a>
+          <a id="viewBtn" class="btn btn-primary btn-view" href="#" target="_blank" rel="noopener noreferrer" data-analytics="view_album">View the album</a>
           <a id="uploadBtn" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer" data-analytics="upload_photos">Upload your photos</a>
         </div>
 
@@ -35,19 +39,27 @@
           <span>⏱ Uploads may take a moment on slower connections</span>
         </div>
 
+        <section class="story-band" aria-label="Moments highlights">
+          <article class="story-pill">
+            <h2>Quick + Simple</h2>
+            <p>Open instantly from your NFC tag and jump right into the album.</p>
+          </article>
+          <article class="story-pill">
+            <h2>Guest Friendly</h2>
+            <p>Family and friends can upload from mobile without creating accounts.</p>
+          </article>
+          <article class="story-pill">
+            <h2>Built for Keepsakes</h2>
+            <p>Your shadowbox gets a living album that grows with every visit.</p>
+          </article>
+        </section>
+
         <div class="faq">
           <details>
             <summary>Help / FAQ</summary>
             <p>
               Tap <strong>View the album</strong> to browse shared photos, or <strong>Upload your photos</strong> to add yours.
-              Dropbox may not strictly block videos on every link type, so please upload photos only.
-            </p>
-          </details>
-          <details>
-            <summary>Why can’t videos be fully blocked here?</summary>
-            <p>
-              This page is static (GitHub Pages), so it can guide behavior but cannot inspect files before Dropbox receives them.
-              For stricter control, use Dropbox File Request file-type limits (if available) or add a serverless upload validator.
+              Please upload photos only.
             </p>
           </details>
         </div>

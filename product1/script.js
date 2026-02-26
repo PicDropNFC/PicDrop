@@ -24,8 +24,8 @@
   const viewBtn = document.getElementById("viewBtn");
   const uploadBtn = document.getElementById("uploadBtn");
 
-  title.textContent = config.productDisplayName || "PicDropNFC";
-  subtitle.textContent = "Thanks for scanning. Your moments belong here.";
+  title.textContent = config.productDisplayName || "Product 1";
+  subtitle.textContent = "Tap. Share. View your moments together.";
 
   const detailRows = [config.coupleName, config.eventName, config.date].filter(Boolean);
   details.innerHTML = detailRows.map((item) => `<div>• ${item}</div>`).join("");
