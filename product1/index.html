@@ -7,13 +7,22 @@
     <meta name="description" content="Scan and share moments with PicDropNFC." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../assets/shared/reset.css" />
     <link rel="stylesheet" href="../assets/shared/components.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
     <main class="page-shell" data-product-page>
+      <!-- NEW: ambient layers -->
+      <div class="bg-aurora" aria-hidden="true"></div>
+      <div class="bg-grid" aria-hidden="true"></div>
+      <div class="bg-noise" aria-hidden="true"></div>
+
       <div class="theme-overlay" aria-hidden="true"></div>
       <div class="theme-particles" aria-hidden="true"></div>
       <div class="theme-sparkles" aria-hidden="true"></div>
@@ -22,45 +31,81 @@
       <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
       <div class="floating-orbs" id="floatingOrbs" aria-hidden="true"></div>
 
-      <section class="card" aria-labelledby="pageTitle">
+      <section class="card card-pop" aria-labelledby="pageTitle">
+        <!-- NEW: card chrome + corner accents -->
+        <div class="card-chrome" aria-hidden="true"></div>
+        <div class="corner corner-tl" aria-hidden="true"></div>
+        <div class="corner corner-tr" aria-hidden="true"></div>
+        <div class="corner corner-bl" aria-hidden="true"></div>
+        <div class="corner corner-br" aria-hidden="true"></div>
+
         <header class="hero-header animate-rise" data-animate>
-          <span class="tag" id="eventBadge">PicDropNFC</span>
-          <p class="loading-quip" id="loadingQuip">Memories loading...</p>
-          <h1 class="title glitch-title" id="pageTitle">Product 1</h1>
-          <p class="subtitle" id="subtitleText">Tap. Share. View your moments together.</p>
+          <div class="hero-toprow">
+            <span class="tag tag-animated" id="eventBadge">PicDropNFC</span>
+            <p class="loading-quip loading-animated" id="loadingQuip">Memories loading...</p>
+          </div>
+
+          <h1 class="title glitch-title" id="pageTitle" data-text="Product 1">Product 1</h1>
+          <p class="subtitle subtitle-glow" id="subtitleText">Tap. Share. View your moments together.</p>
         </header>
 
         <div class="laser-line" aria-hidden="true"></div>
 
-        <div class="details-list animate-rise" id="eventDetails" data-animate></div>
+        <div class="details-list animate-rise details-pop" id="eventDetails" data-animate></div>
 
         <div class="cta-stack animate-rise" data-animate>
-          <a id="viewBtn" class="btn btn-primary btn-view" href="#" target="_blank" rel="noopener noreferrer" data-analytics="view_album">View the album</a>
-          <a id="uploadBtn" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer" data-analytics="upload_photos">Upload your photos</a>
+          <a
+            id="viewBtn"
+            class="btn btn-primary btn-view btn-pop"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics="view_album"
+          >
+            <span class="btn-label">View the album</span>
+            <span class="btn-sheen" aria-hidden="true"></span>
+          </a>
+
+          <a
+            id="uploadBtn"
+            class="btn btn-secondary btn-pop"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics="upload_photos"
+          >
+            <span class="btn-label">Upload your photos</span>
+            <span class="btn-sheen" aria-hidden="true"></span>
+          </a>
         </div>
 
-        <div class="microcopy animate-rise" data-animate>
+        <div class="microcopy animate-rise microcopy-pop" data-animate>
           <span>✅ No account needed</span>
           <span>📸 Photos only, please—no videos</span>
           <span>⏱ Uploads may take a moment on slower connections</span>
         </div>
 
         <section class="story-band" aria-label="Moments highlights">
-          <article class="story-pill animate-rise" data-animate>
+          <article class="story-pill story-pill-pop animate-rise" data-animate>
             <h2>Quick + Simple</h2>
             <p>Open instantly from your NFC tag and jump right into the album.</p>
+            <span class="pill-glint" aria-hidden="true"></span>
           </article>
-          <article class="story-pill animate-rise" data-animate>
+
+          <article class="story-pill story-pill-pop animate-rise" data-animate>
             <h2>Guest Friendly</h2>
             <p>Family and friends can upload from mobile without creating accounts.</p>
+            <span class="pill-glint" aria-hidden="true"></span>
           </article>
-          <article class="story-pill animate-rise" data-animate>
+
+          <article class="story-pill story-pill-pop animate-rise" data-animate>
             <h2>Built for Keepsakes</h2>
             <p>Your shadowbox gets a living album that grows with every visit.</p>
+            <span class="pill-glint" aria-hidden="true"></span>
           </article>
         </section>
 
-        <section class="hype-console animate-rise" data-animate aria-label="Interactive animation controls">
+        <section class="hype-console animate-rise hype-pop" data-animate aria-label="Interactive animation controls">
           <p>Performance Mode</p>
           <div class="hype-controls" role="group" aria-label="Animation settings">
             <button class="mode-btn is-active" data-density="max">MAX</button>
@@ -69,9 +114,12 @@
           </div>
         </section>
 
-        <div class="faq animate-rise" data-animate>
+        <div class="faq animate-rise faq-pop" data-animate>
           <details>
-            <summary>Help / FAQ</summary>
+            <summary>
+              <span>Help / FAQ</span>
+              <span class="chev" aria-hidden="true"></span>
+            </summary>
             <p>
               Tap <strong>View the album</strong> to browse shared photos, or <strong>Upload your photos</strong> to add yours.
               Please upload photos only.
@@ -79,7 +127,9 @@
           </details>
         </div>
 
-        <p class="footer-note animate-rise" data-animate>Public link notice: anyone with this page URL can access these buttons.</p>
+        <p class="footer-note animate-rise footer-pop" data-animate>
+          Public link notice: anyone with this page URL can access these buttons.
+        </p>
       </section>
     </main>
 
