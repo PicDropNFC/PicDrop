@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/shared/reset.css" />
     <link rel="stylesheet" href="../assets/shared/components.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="page-shell" data-product-page>
@@ -17,43 +18,58 @@
       <div class="theme-particles" aria-hidden="true"></div>
       <div class="theme-sparkles" aria-hidden="true"></div>
 
+      <canvas class="aurora-canvas" id="auroraCanvas" aria-hidden="true"></canvas>
+      <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
+      <div class="floating-orbs" id="floatingOrbs" aria-hidden="true"></div>
+
       <section class="card" aria-labelledby="pageTitle">
-        <header class="hero-header">
+        <header class="hero-header animate-rise" data-animate>
           <span class="tag" id="eventBadge">PicDropNFC</span>
           <p class="loading-quip" id="loadingQuip">Memories loading...</p>
-          <h1 class="title" id="pageTitle">Product 1</h1>
+          <h1 class="title glitch-title" id="pageTitle">Product 1</h1>
           <p class="subtitle" id="subtitleText">Tap. Share. View your moments together.</p>
         </header>
 
-        <div class="details-list" id="eventDetails"></div>
+        <div class="laser-line" aria-hidden="true"></div>
 
-        <div class="cta-stack">
+        <div class="details-list animate-rise" id="eventDetails" data-animate></div>
+
+        <div class="cta-stack animate-rise" data-animate>
           <a id="viewBtn" class="btn btn-primary btn-view" href="#" target="_blank" rel="noopener noreferrer" data-analytics="view_album">View the album</a>
           <a id="uploadBtn" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer" data-analytics="upload_photos">Upload your photos</a>
         </div>
 
-        <div class="microcopy">
+        <div class="microcopy animate-rise" data-animate>
           <span>✅ No account needed</span>
           <span>📸 Photos only, please—no videos</span>
           <span>⏱ Uploads may take a moment on slower connections</span>
         </div>
 
         <section class="story-band" aria-label="Moments highlights">
-          <article class="story-pill">
+          <article class="story-pill animate-rise" data-animate>
             <h2>Quick + Simple</h2>
             <p>Open instantly from your NFC tag and jump right into the album.</p>
           </article>
-          <article class="story-pill">
+          <article class="story-pill animate-rise" data-animate>
             <h2>Guest Friendly</h2>
             <p>Family and friends can upload from mobile without creating accounts.</p>
           </article>
-          <article class="story-pill">
+          <article class="story-pill animate-rise" data-animate>
             <h2>Built for Keepsakes</h2>
             <p>Your shadowbox gets a living album that grows with every visit.</p>
           </article>
         </section>
 
-        <div class="faq">
+        <section class="hype-console animate-rise" data-animate aria-label="Interactive animation controls">
+          <p>Performance Mode</p>
+          <div class="hype-controls" role="group" aria-label="Animation settings">
+            <button class="mode-btn is-active" data-density="max">MAX</button>
+            <button class="mode-btn" data-density="balanced">Balanced</button>
+            <button class="mode-btn" data-density="calm">Calm</button>
+          </div>
+        </section>
+
+        <div class="faq animate-rise" data-animate>
           <details>
             <summary>Help / FAQ</summary>
             <p>
@@ -63,7 +79,7 @@
           </details>
         </div>
 
-        <p class="footer-note">Public link notice: anyone with this page URL can access these buttons.</p>
+        <p class="footer-note animate-rise" data-animate>Public link notice: anyone with this page URL can access these buttons.</p>
       </section>
     </main>
 
