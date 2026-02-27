@@ -150,3 +150,16 @@
     animation: none !important;
   }
 }
+
+
+
+/* Theme 09 button animation: holiday twinkle */
+.btn-primary {
+  animation: theme09CtaShift 6s ease infinite, theme09Twinkle 1.8s steps(2, end) infinite;
+}
+
+@keyframes theme09Twinkle {
+  0%,100% { filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+  50% { filter: drop-shadow(0 0 7px rgba(255,255,255,0.45)); }
+}
+

@@ -150,3 +150,20 @@
     animation: none !important;
   }
 }
+
+
+
+/* Theme 06 button animation: playful wobble */
+.btn-primary:hover,
+.btn-secondary:hover {
+  animation: theme06Wobble 520ms ease;
+}
+
+@keyframes theme06Wobble {
+  0% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-1deg) scale(1.02); }
+  50% { transform: rotate(1deg) scale(1.03); }
+  75% { transform: rotate(-0.6deg) scale(1.01); }
+  100% { transform: rotate(0) scale(1); }
+}
+

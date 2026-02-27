@@ -150,3 +150,25 @@
     animation: none !important;
   }
 }
+
+
+
+/* Theme 05 button animation: graduation spotlight */
+.btn-primary {
+  position: relative;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 10%, rgba(255,255,255,0.45) 42%, transparent 70%);
+  transform: translateX(-120%);
+  animation: theme05Spot 3.8s ease-in-out infinite;
+}
+
+@keyframes theme05Spot {
+  0%,75% { transform: translateX(-120%); }
+  100% { transform: translateX(130%); }
+}
+

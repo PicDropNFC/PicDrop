@@ -150,3 +150,18 @@
     animation: none !important;
   }
 }
+
+
+
+/* Theme 02 button animation: lift + rustic glow */
+.btn-primary {
+  animation: theme02CtaShift 6s ease infinite, theme02Warmth 2.6s ease-in-out infinite;
+}
+
+@keyframes theme02Warmth {
+  0%,100% { filter: saturate(1) brightness(1); }
+  50% { filter: saturate(1.18) brightness(1.06); }
+}
+
+.btn-primary:hover { transform: translateY(-3px) scale(1.02); }
+

@@ -464,3 +464,35 @@
     transition: none !important;
   }
 }
+
+
+
+/* Theme 01 button animation variant: luminous sweep + bloom ring */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: -140% 30%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.58), transparent);
+  transform: rotate(26deg);
+  animation: theme01BtnSweep 4.8s ease-in-out infinite;
+}
+
+@keyframes theme01BtnSweep {
+  0%, 82% { translate: -130% 0; }
+  100% { translate: 130% 0; }
+}
+
+.btn-view:hover {
+  animation: pulseView 2.2s ease infinite, theme01Bloom 1.2s ease;
+}
+
+@keyframes theme01Bloom {
+  0% { box-shadow: 0 0 0 rgba(181,124,226,0); }
+  100% { box-shadow: 0 0 0 14px rgba(181,124,226,0); }
+}
+

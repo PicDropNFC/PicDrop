@@ -150,3 +150,29 @@
     animation: none !important;
   }
 }
+
+
+
+/* Theme 03 button animation: modern underline reveal */
+.btn-primary {
+  position: relative;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 8px;
+  height: 2px;
+  background: rgba(255,255,255,0.82);
+  transform: scaleX(0.15);
+  transform-origin: center;
+  transition: transform 280ms ease;
+}
+
+.btn-primary:hover::before,
+.btn-primary:focus-visible::before {
+  transform: scaleX(1);
+}
+

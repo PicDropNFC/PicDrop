@@ -150,3 +150,21 @@
     animation: none !important;
   }
 }
+
+
+
+/* Theme 08 button animation: conference slide shine */
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
+  transform: translateX(-130%);
+  animation: theme08Slide 4.6s ease-in-out infinite;
+}
+
+@keyframes theme08Slide {
+  0%,78% { transform: translateX(-130%); }
+  100% { transform: translateX(130%); }
+}
+

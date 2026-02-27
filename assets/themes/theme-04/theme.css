@@ -150,3 +150,16 @@
     animation: none !important;
   }
 }
+
+
+
+/* Theme 04 button animation: soft bob */
+.btn-primary {
+  animation: theme04CtaShift 6s ease infinite, theme04Bob 2.8s ease-in-out infinite;
+}
+
+@keyframes theme04Bob {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
