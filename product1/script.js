@@ -26,6 +26,7 @@
 
   title.textContent = config.productDisplayName || "Product 1";
   title.dataset.text = title.textContent;
+
   subtitle.textContent = "View Event moments together.";
 
   const detailRows = [config.coupleName, config.eventName, config.date].filter(Boolean);
@@ -37,36 +38,6 @@
 
   viewBtn.href = config.dropboxViewUrl || "#";
   uploadBtn.href = config.dropboxUploadUrl || "#";
-
-  [viewBtn, uploadBtn].forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      const href = button.href;
-      if (!href || href.endsWith("#")) {
-        return;
-      }
-
-      button.classList.remove("is-loading");
-      void button.offsetWidth;
-      button.classList.add("is-loading");
-
-      const eventName = button.getAttribute("data-analytics");
-      window.PicDropAnalytics?.emit(eventName, {
-        productDisplayName: config.productDisplayName,
-        themeId: activeTheme
-      });
-
-      window.setTimeout(() => {
-        window.open(href, "_blank", "noopener,noreferrer");
-        button.classList.remove("is-loading");
-      }, 1000);
-    });
-  });
-
-  if (previewTheme) {
-    window.__PICDROP_DEBUG__ = true;
-    window.PicDropAnalytics?.emit("theme_preview_active", { previewTheme });
-  }
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const card = document.querySelector(".card");
@@ -93,27 +64,30 @@
   }
 
   function mountOrbs(count) {
-    if (!orbsRoot) return;
+    if (!orbsRoot || prefersReducedMotion) return;
+
     orbsRoot.innerHTML = "";
     for (let i = 0; i < count; i += 1) {
       const orb = document.createElement("div");
       orb.className = "orb";
       orb.style.left = `${Math.random() * 100}%`;
       orb.style.top = `${Math.random() * 100}%`;
-      orb.style.background = `radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.9), hsl(${Math.random() * 360}deg 95% 70% / 0.48), transparent 70%)`;
+      orb.style.background = `radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.9), hsl(${
+        Math.random() * 360
+      }deg 95% 70% / 0.48), transparent 70%)`;
       orbsRoot.appendChild(orb);
     }
   }
 
   function setupAurora() {
-    if (!canvas || prefersReducedMotion) {
-      return;
-    }
+    if (!canvas || prefersReducedMotion) return;
 
     const context = canvas.getContext("2d");
     if (!context) return;
 
     const scale = window.devicePixelRatio || 1;
+    let time = 0;
+    let rafId = 0;
 
     function sizeCanvas() {
       canvas.width = Math.floor(window.innerWidth * scale);
@@ -123,11 +97,19 @@
       context.setTransform(scale, 0, 0, scale, 0, 0);
     }
 
-    sizeCanvas();
-    window.addEventListener("resize", sizeCanvas);
+    // Debounced resize so we don’t hammer reflows on mobile
+    let resizeTimer = 0;
+    const onResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        sizeCanvas();
+      }, 120);
+    };
 
-    let time = 0;
-    let rafId = 0;
+    sizeCanvas();
+    window.removeEventListener("resize", canvas.__PICDROP_RESIZE__);
+    canvas.__PICDROP_RESIZE__ = onResize;
+    window.addEventListener("resize", onResize);
 
     const render = () => {
       const { ribbons, stars } = densityOptions[activeDensity];
@@ -173,6 +155,9 @@
   }
 
   function setupEntranceAnimations() {
+    const nodes = Array.from(document.querySelectorAll("[data-animate]"));
+    if (!nodes.length) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -185,7 +170,7 @@
       { threshold: 0.12 }
     );
 
-    document.querySelectorAll("[data-animate]").forEach((node, index) => {
+    nodes.forEach((node, index) => {
       node.style.transitionDelay = `${index * 70}ms`;
       observer.observe(node);
     });
@@ -193,6 +178,10 @@
 
   function setupTilt() {
     if (!card || prefersReducedMotion) return;
+
+    // Disable tilt on coarse pointers (most phones)
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+    if (isCoarse) return;
 
     card.addEventListener("pointermove", (event) => {
       const rect = card.getBoundingClientRect();
@@ -230,6 +219,73 @@
         dot.remove();
       }, 700);
     });
+  }
+
+  function addTapRipple(el) {
+    // lightweight ripple for touch feedback
+    el.addEventListener("pointerdown", (e) => {
+      // only for primary pointer
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const ripple = document.createElement("span");
+      ripple.style.position = "absolute";
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      ripple.style.width = "12px";
+      ripple.style.height = "12px";
+      ripple.style.borderRadius = "999px";
+      ripple.style.transform = "translate(-50%, -50%) scale(1)";
+      ripple.style.background = "radial-gradient(circle, rgba(255,255,255,.55), transparent 70%)";
+      ripple.style.pointerEvents = "none";
+      ripple.style.opacity = "0.9";
+      ripple.style.filter = "blur(0px)";
+      ripple.style.transition = "transform 520ms ease, opacity 520ms ease";
+      el.appendChild(ripple);
+
+      requestAnimationFrame(() => {
+        ripple.style.transform = "translate(-50%, -50%) scale(18)";
+        ripple.style.opacity = "0";
+      });
+
+      window.setTimeout(() => ripple.remove(), 560);
+    });
+  }
+
+  // Button behavior (your existing click delay + loading) + ripple
+  [viewBtn, uploadBtn].forEach((button) => {
+    addTapRipple(button);
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      const href = button.href;
+      if (!href || href.endsWith("#")) {
+        return;
+      }
+
+      button.classList.remove("is-loading");
+      void button.offsetWidth;
+      button.classList.add("is-loading");
+
+      const eventName = button.getAttribute("data-analytics");
+      window.PicDropAnalytics?.emit(eventName, {
+        productDisplayName: config.productDisplayName,
+        themeId: activeTheme
+      });
+
+      window.setTimeout(() => {
+        window.open(href, "_blank", "noopener,noreferrer");
+        button.classList.remove("is-loading");
+      }, 900);
+    });
+  });
+
+  if (previewTheme) {
+    window.__PICDROP_DEBUG__ = true;
+    window.PicDropAnalytics?.emit("theme_preview_active", { previewTheme });
   }
 
   modeButtons.forEach((button) => {
